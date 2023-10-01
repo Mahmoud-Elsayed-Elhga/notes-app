@@ -21,6 +21,7 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
+      //عملتها مالتي عشان كذا سكرين
       providers: [
         BlocProvider(create: (context) => AddNoteCubit()),
       ],
