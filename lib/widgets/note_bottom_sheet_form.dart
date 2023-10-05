@@ -49,21 +49,26 @@ class _NoteBottomSheetFormState extends State<NoteBottomSheetForm> {
             maxLines: 5,
           ),
           const SizedBox(height: 32),
-          CustomButton(
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save(); // كدا اتاكدت انها مش ب null
-                NoteModel note = NoteModel(
-                    title: title!,
-                    subtitle: content!,
-                    date: DateTime.now().toString(),
-                    color: Colors.greenAccent.value);
-                BlocProvider.of<AddNoteCubit>(context).addNote(note);
-              } else {
-                autovalidateMode = AutovalidateMode
-                    .always; //معناها انها null  فهيجيبلي ايرور احمر لليوزر
-                setState(() {});
-              }
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save(); // كدا اتاكدت انها مش ب null
+                    NoteModel note = NoteModel(
+                        title: title!,
+                        subtitle: content!,
+                        date: DateTime.now().toString(),
+                        color: Colors.greenAccent.value);
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                  } else {
+                    autovalidateMode = AutovalidateMode
+                        .always; //معناها انها null  فهيجيبلي ايرور احمر لليوزر
+                    setState(() {});
+                  }
+                },
+              );
             },
           ),
           const SizedBox(height: 16),
