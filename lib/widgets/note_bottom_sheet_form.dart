@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
@@ -50,6 +53,12 @@ class _NoteBottomSheetFormState extends State<NoteBottomSheetForm> {
             onTap: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save(); // كدا اتاكدت انها مش ب null
+                NoteModel note = NoteModel(
+                    title: title!,
+                    subtitle: content!,
+                    date: DateTime.now().toString(),
+                    color: Colors.greenAccent.value);
+                BlocProvider.of<AddNoteCubit>(context).addNote(note);
               } else {
                 autovalidateMode = AutovalidateMode
                     .always; //معناها انها null  فهيجيبلي ايرور احمر لليوزر
