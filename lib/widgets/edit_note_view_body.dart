@@ -36,6 +36,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
+            initialValue: widget.note.title,
             onChanged: (p0) {
               title = p0;
             },
@@ -43,6 +44,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
+            initialValue: widget.note.subtitle,
             onChanged: (p0) {
               content = p0;
             },

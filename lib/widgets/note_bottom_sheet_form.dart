@@ -62,7 +62,7 @@ class _NoteBottomSheetFormState extends State<NoteBottomSheetForm> {
                         subtitle: content!,
                         date: DateFormat("yyyy-MM-dd   HH:mm")
                             .format(DateTime.now()),
-                        color: Colors.greenAccent.value);
+                        color: Colors.yellow.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
                   } else {
                     autovalidateMode = AutovalidateMode
